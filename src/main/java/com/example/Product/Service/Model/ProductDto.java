@@ -14,6 +14,9 @@ public class ProductDto {
     @NotBlank(message ="product Name must nt be blank")
     private String productName;
 
+    @NotBlank
+    private String description;
+
    @NotNull(message = "Quantity must not be null")
     private int quantity;
 
