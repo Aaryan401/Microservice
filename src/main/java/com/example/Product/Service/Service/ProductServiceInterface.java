@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProductServiceInterface {
     public String saveProduct(Product product);
     public List<Product> findProduct();
-
+    public Product findProductById(Long productId);
     public Product addQuantity(Long productId, ProductDto productDto);
     public Product subtractQuantity(Long productId,ProductDto productDto);
 }

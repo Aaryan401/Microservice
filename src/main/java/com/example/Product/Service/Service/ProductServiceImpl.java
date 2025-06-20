@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductServiceInterface{
     }
 
     @Override
+    public Product findProductById(Long productId) {
+        return productRepository.findById(productId).orElseThrow(()->new RuntimeException("Product not found"));
+    }
+
+    @Override
     public Product addQuantity(Long productId, ProductDto productDto) {
         Product foundProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
         foundProduct.setProductName(productDto.getProductName());
