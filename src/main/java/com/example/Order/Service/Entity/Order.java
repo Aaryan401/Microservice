@@ -21,6 +21,12 @@ public class Order {
     private Long orderId;
 
     @Column(nullable = false)
+    private Long userId;
+
+    @Column(nullable = false)
+    private Long productId;
+
+    @Column(nullable = false)
     private int quantity;
 
     @Column(nullable = false)
@@ -36,9 +42,9 @@ public class Order {
     private String pincode;
 
     @Column(nullable = false)
-    private String totalPrice;
+    private Double totalPrice;
 
-    @Column(nullable = false)
+    @Column(nullable = false,updatable = false)
     private LocalDateTime createdDate;
 
     @Column(nullable = false)
