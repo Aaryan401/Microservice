@@ -4,6 +4,7 @@ package com.example.Product.Service.Controller;
 import com.example.Product.Service.Entity.Product;
 import com.example.Product.Service.Model.ProductDto;
 import com.example.Product.Service.Service.ProductServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,14 +33,21 @@ public class ProductController {
         return ResponseEntity.ok(product);  //Using builder to build the ResponseEntity
     }
 
+    @GetMapping("get-specific-product/{pid}")
+    public ResponseEntity<Product> getSpecificProductById(@PathVariable(name="pid") Long productId){
+        Product foundProduct = productService.findProductById(productId);
+        return ResponseEntity.ok(foundProduct);
+    }
+
+
     @PutMapping("add-quantity/{productId}")
-    public ResponseEntity<Product> addProductQuantity(@PathVariable Long productId, @RequestBody ProductDto productDto){
+    public ResponseEntity<Product> addProductQuantity(@PathVariable Long productId,@Valid @RequestBody ProductDto productDto){
         Product addQuantity = productService.addQuantity(productId, productDto);
         return new ResponseEntity<>(addQuantity,HttpStatus.OK);
     }
 
     @PutMapping("subtract-quantity/{productId}")
-    public ResponseEntity<Product> subtractProductQuantity(@PathVariable Long productId, @RequestBody ProductDto productDto){
+    public ResponseEntity<Product> subtractProductQuantity(@PathVariable Long productId,@Valid @RequestBody ProductDto productDto){
         Product subtractQuantity = productService.subtractQuantity(productId, productDto);
         return new ResponseEntity<>(subtractQuantity,HttpStatus.OK);
     }
