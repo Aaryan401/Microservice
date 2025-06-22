@@ -39,20 +39,20 @@ public class Order {
     private String city;
 
     @Column(nullable = false)
-    private String pincode;
+    private String pinCode;
 
     @Column(nullable = false)
     private Double totalPrice;
 
     @Column(nullable = false,updatable = false)
-    private LocalDateTime createdDate;
+    private LocalDateTime orderDate;
 
     @Column(nullable = false)
     private LocalDateTime updatedDate;
 
     @PrePersist
     protected void onCreate(){
-        this.createdDate=LocalDateTime.now();
+        this.orderDate=LocalDateTime.now();
         this.updatedDate=LocalDateTime.now();
     }
 
