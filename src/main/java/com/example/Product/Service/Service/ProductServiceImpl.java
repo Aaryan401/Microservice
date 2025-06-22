@@ -43,12 +43,11 @@ public class ProductServiceImpl implements ProductServiceInterface{
         return productRepository.save(foundProduct);
     }
 
+
     @Override
     public Product subtractQuantity(Long productId, ProductDto productDto) {
         Product foundProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
-        foundProduct.setProductName(productDto.getProductName());
         foundProduct.setQuantity(foundProduct.getQuantity() - productDto.getQuantity());
-        foundProduct.setPrice(productDto.getPrice());
         return productRepository.save(foundProduct);
     }
 }
